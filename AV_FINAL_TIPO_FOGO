@@ -1,1 +1,165 @@
-print("Hello World")
+def posição_menor_valor(matriz_AnxnZ):
+    
+    pos = (0, 0)
+    
+    for i, linha in enumerate(matriz_AnxnZ):
+        
+        for j, numero in enumerate(linha):
+            
+            if numero < matriz_AnxnZ[pos[0]][pos[1]]:
+                
+                pos = (i, j)
+    
+    return pos
+
+n = int(input("n: "))
+
+matriz_Anxn = []
+matriz_Bnxn = []
+matriz_AnxnZ_00 = []
+matriz_AnxnZ = []
+matriz_AnxnT = []
+matriz_BnxnDZ = []
+matriz_AnxnTxBnxnDZ = []
+matriz_Rnxn = []
+
+print()
+
+for i in range(n):
+	
+	linha_A = []
+	
+	for j in range(n):
+		
+		linha_A.append(int(input("Digite um elemento para a matriz_Anxn: ")))
+		
+	matriz_Anxn.append(linha_A)
+
+print()
+
+for i in range(n):
+	
+	linha_B = []
+	
+	for j in range(n):
+		
+		linha_B.append(int(input("Digite um elemento para a matriz_Bnxn: ")))
+		
+	matriz_Bnxn.append(linha_B)
+
+print()
+
+for i in range(n):
+	
+	linha_AZ = []
+	
+	for j in range(n):
+		
+		linha_AZ.append(matriz_Anxn[i][j])
+		
+	matriz_AnxnZ_00.append(linha_AZ)
+
+matriz_AnxnZ = matriz_AnxnZ_00
+
+pos = posição_menor_valor(matriz_AnxnZ)
+
+linha = pos[0]
+
+for coluna in range(len(matriz_AnxnZ[linha])):
+	
+	matriz_AnxnZ[linha][coluna] = 0
+
+coluna = pos[1]
+
+for linha in range(len(matriz_AnxnZ)):
+    
+    matriz_AnxnZ[linha][coluna] = 0
+
+for i in range(n):
+	
+	linha_AT = []
+	
+	for j in range(n):
+		
+		linha_AT.append(matriz_Anxn[j][i])
+		
+	matriz_AnxnT.append(linha_AT)
+									
+for i in range(n):
+	
+	linha_BDZ = []
+	
+	for j in range(n):
+		
+		linha_BDZ.append(matriz_Bnxn[i][j])
+		
+	linha_BDZ[i] = 0
+		
+	matriz_BnxnDZ.append(linha_BDZ)
+	
+for i in range(n):
+	
+	linha_ATxBDZ = []
+	
+	for j in range(n):
+		
+		for k in range(n):
+			
+			if k == 0:
+				
+				soma = 0
+			
+			produto = (matriz_AnxnT[i][k]*matriz_BnxnDZ[k][j])
+			
+			soma = soma + produto
+			
+		linha_ATxBDZ.append(soma)
+	
+	matriz_AnxnTxBnxnDZ.append(linha_ATxBDZ)
+	
+for i in range(n):
+	
+	linha_R = []
+	
+	for j in range(n):
+		
+		linha_R.append(matriz_AnxnZ[i][j]+matriz_AnxnTxBnxnDZ[i][j])
+		
+	matriz_Rnxn.append(linha_R)
+		
+print("MATRIZ_Anxn")
+print()
+
+for i in range(n):
+	
+	for j in range(n):
+		
+		print(matriz_Anxn[i][j], end = " ")
+	
+	print()
+
+print()
+
+print("MATRIZ_Bnxn")
+print()
+
+for i in range(n):
+	
+	for j in range(n):
+		
+		print(matriz_Bnxn[i][j], end = " ")
+		
+	print()
+
+print()
+
+print("MATRIZ_Rnxn")
+print()
+
+for i in range(n):
+	
+	for j in range(n):
+		
+		print(matriz_Rnxn[i][j], end = " ")
+		
+	print()
